@@ -2,67 +2,67 @@
 
 export = astar_core;
 
-declare interface IGridNode {
+interface IGridNode {
   /**
    * @name x
    * @description X坐标
    */
-  public x: number;
+  x: number;
 
   /**
    * @name y
    * @description Y坐标
    */
-  public y: number;
+  y: number;
 
   /**
    * @name x
    * @description 权重
    */
-  public weight: number;
+  weight: number;
 
   /**
    * @name f
    * @description 综合优先级
    */
-  public f: number;
+  f: number;
 
   /**
    * @name n
    * @description 节点距离起点的代价
    */
-  public g: number;
+  g: number;
 
   /**
    * @name h
    * @description 节点距离终点的预计代价
    */
-  public h: number;
+  h: number;
 
   /**
    * @name visited
    * @description 节点是否被访问过
    */
-  public visited: boolean;
+  visited: boolean;
 
   /**
    * @name closed
    * @description 节点是否在关闭列表
    */
-  public closed: boolean;
+  closed: boolean;
 
   /**
    * @name parent
    * @description 路径上的父节点
    */
-  public parent: IGridNode;
+  parent: IGridNode;
 
   /**
    * @name toString
    * @description 格式化字符串
    * @returns {string}
    */
-  public toString(): string;
+  toString(): string;
 
   /**
    * @name getCost
@@ -70,61 +70,61 @@ declare interface IGridNode {
    * @param fromNeighbor 相邻节点
    * @returns {number}
    */
-  public getCost(fromNeighbor: IGridNode): number;
+  getCost(fromNeighbor: IGridNode): number;
 
   /**
    * @name isWall
    * @description 是否是墙
    * @returns {boolean}
    */
-  public isWall(): boolean;
+  isWall(): boolean;
 }
 
-declare interface IGraph {
+interface IGraph {
   /**
    * @name nodes
    * @description 节点集合
    */
-  private nodes: Array<IGridNode>;
+  nodes: Array<IGridNode>;
 
   /**
    * @name grid
    * @description 网格，二维的节点集合
    */
-  private grid: Array<Array<IGridNode>>;
+  grid: Array<Array<IGridNode>>;
 
   /**
    * @name diagonal
    * @description 标识是否可以对角移动
    */
-  private diagonal: boolean;
+  diagonal: boolean;
 
   /**
    * @name dirtyNodes
    * @description 脏节点集合
    */
-  private dirtyNodes: Array<IGridNode>;
+  dirtyNodes: Array<IGridNode>;
 
   /**
    * @name init
    * @description 初始化
    * @returns {void}
    */
-  public init(): void;
+  init(): void;
 
   /**
    * @name cleanDirty
    * @description 清理脏节点集合
    * @returns {void}
    */
-  public cleanDirty(): void;
+  cleanDirty(): void;
   /**
    * @name markDirty
    * @description 加入脏节点集合
    * @param node 节点
    * @returns {void}
    */
-  public markDirty(node: IGridNode): void;
+  markDirty(node: IGridNode): void;
 
   /**
    * @name neighbors
@@ -132,18 +132,18 @@ declare interface IGraph {
    * @param node 节点
    * @returns {Array<IGridNode>} 所有相邻节点
    */
-  public neighbors(node: IGridNode): Array<IGridNode>;
+  neighbors(node: IGridNode): Array<IGridNode>;
 
   /**
    * @name toString
    * @description 格式化字符串
    */
-  public toString(): string;
+  toString(): string;
 }
 
-declare interface IAstar {
-  public static cleanNode(node: IGridNode): void;
-  public static search (graph: IGraph, start: IGridNode, end: IGridNode, options:any): Array<IGridNode>
+interface IAstar {
+  cleanNode(node: IGridNode): void;
+  search (graph: IGraph, start: IGridNode, end: IGridNode, options:any): Array<IGridNode>
 }
 
 declare const astar_core: {

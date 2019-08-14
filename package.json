@@ -1,0 +1,23 @@
+{
+  "name": "astar-core",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/index.js",
+  "files": [
+    "bin",
+    "src"
+  ],
+  "bin": {
+    "astar-core": "src/index.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "dev": "ts-node index.ts"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "ts-node": "^8.3.0",
+    "typescript": "^3.5.3"
+  }
+}

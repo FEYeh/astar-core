@@ -1,0 +1,18 @@
+{
+  "compilerOptions": {
+    "allowJs": true,
+    "target": "es2017",
+    "module": "commonjs",
+    "removeComments": true,
+    "preserveConstEnums": true,
+    "moduleResolution": "node",
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "experimentalDecorators": true,
+    "importHelpers": true,
+    "outDir": "src",
+    "baseUrl": "bin",
+    "typeRoots": ["node_modules/@types"],
+  },
+  "include": ["bin/**/*",],
+}

@@ -1,7 +1,12 @@
 {
   "name": "astar-core",
-  "version": "1.0.3",
-  "description": "",
+  "version": "1.0.4",
+  "description": "A-Star Algorithm Core",
+  "keywords": [
+    "a-star",
+    "astar",
+    "algorithm"
+  ],
   "main": "src/index.js",
   "files": [
     "bin",

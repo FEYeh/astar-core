@@ -14,5 +14,6 @@
     "baseUrl": "bin",
     "typeRoots": ["node_modules/@types"],
   },
-  "include": ["bin/**/*",],
+  "include": ["bin/**/*", "astar-core.d.ts",],
+  "files": ["astar-core.d.ts"]
 }

@@ -64,7 +64,7 @@ export default class AStar {
    * @param end 终点节点
    * @param options 配置
    */
-  public static search (graph: Graph, start: GridNode, end: GridNode, options:any) {
+  public static search (graph: Graph, start: GridNode, end: GridNode, options:any): Array<GridNode> {
     graph.cleanDirty();
     options = options || {};
     // 启发算法，默认用曼哈顿距离作为启发算法

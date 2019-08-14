@@ -5,6 +5,7 @@
   "keywords": [
     "a-star",
     "astar",
+    "astar-core",
     "algorithm"
   ],
   "main": "src/index.js",

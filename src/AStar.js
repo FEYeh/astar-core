@@ -49,7 +49,6 @@ class AStar {
         const neighborNodes = new Map();
         const currentNodes = new Map();
         while (openHeap.size() > 0) {
-            iterNum++;
             let currentNode = openHeap.pop();
             if (currentNode === end) {
                 const result = {
@@ -90,6 +89,7 @@ class AStar {
             }
             neighborNodes[iterNum] = neighbors;
             currentNodes[iterNum] = currentNode;
+            iterNum++;
         }
         if (closest) {
             const result = {

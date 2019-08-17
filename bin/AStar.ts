@@ -93,7 +93,6 @@ export default class AStar {
     const currentNodes: Map<number, GridNode> = new Map();
 
     while (openHeap.size() > 0) {
-      iterNum++;
       // 取对顶元素，也就是F最小的。堆帮我们排好序了
       let currentNode = openHeap.pop();
 
@@ -152,6 +151,7 @@ export default class AStar {
       }
       neighborNodes[iterNum] = neighbors;
       currentNodes[iterNum] = currentNode;
+      iterNum++;
     }
 
     if (closest) {

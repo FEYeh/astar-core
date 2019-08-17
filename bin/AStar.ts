@@ -18,6 +18,12 @@ function pathTo(node: GridNode): Array<GridNode> {
   return path;
 }
 
+export interface AStarResult {
+  path: Array<GridNode>;
+  currentNodes: Map<number, GridNode>;
+  neighborNodes: Map<number, Array<GridNode>>;
+}
+
 /**
  * @name Heuristics
  * @description 启发式算法 manhattan-曼哈顿距离，diagonal-对角距离
@@ -64,7 +70,7 @@ export default class AStar {
    * @param end 终点节点
    * @param options 配置
    */
-  public static search (graph: Graph, start: GridNode, end: GridNode, options:any): Array<GridNode> {
+  public static search (graph: Graph, start: GridNode, end: GridNode, options:any): AStarResult {
     graph.cleanDirty();
     options = options || {};
     // 启发算法，默认用曼哈顿距离作为启发算法
@@ -82,15 +88,23 @@ export default class AStar {
     graph.markDirty(start);
 
     openHeap.push(start);
+    let iterNum = 0;
+    const neighborNodes: Map<number, Array<GridNode>> = new Map();
+    const currentNodes: Map<number, GridNode> = new Map();
 
     while (openHeap.size() > 0) {
-
+      iterNum++;
       // 取对顶元素，也就是F最小的。堆帮我们排好序了
       let currentNode = openHeap.pop();
 
       // 如果当前节点是终点，则返回路径
       if (currentNode === end) {
-        return pathTo(currentNode);
+        const result: AStarResult = {
+          path: pathTo(currentNode),
+          currentNodes,
+          neighborNodes,
+        };
+        return result;
       }
 
       // 将当前节点放入关闭列表，这里用的是closed标志，然后处理其他相邻节点
@@ -136,13 +150,25 @@ export default class AStar {
           }
         }
       }
+      neighborNodes[iterNum] = neighbors;
+      currentNodes[iterNum] = currentNode;
     }
 
     if (closest) {
-      return pathTo(closestNode);
+      const result: AStarResult = {
+        path: pathTo(closestNode),
+        currentNodes,
+        neighborNodes,
+      };
+      return result;
     }
 
     // 找不到路径，返回空
-    return [];
+    const result: AStarResult = {
+      path: [],
+      currentNodes,
+      neighborNodes,
+    };
+    return result;
   }
 }

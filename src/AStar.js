@@ -45,10 +45,19 @@ class AStar {
         start.h = heuristic(start, end);
         graph.markDirty(start);
         openHeap.push(start);
+        let iterNum = 0;
+        const neighborNodes = new Map();
+        const currentNodes = new Map();
         while (openHeap.size() > 0) {
+            iterNum++;
             let currentNode = openHeap.pop();
             if (currentNode === end) {
-                return pathTo(currentNode);
+                const result = {
+                    path: pathTo(currentNode),
+                    currentNodes,
+                    neighborNodes,
+                };
+                return result;
             }
             currentNode.closed = true;
             const neighbors = graph.neighbors(currentNode);
@@ -79,11 +88,23 @@ class AStar {
                     }
                 }
             }
+            neighborNodes[iterNum] = neighbors;
+            currentNodes[iterNum] = currentNode;
         }
         if (closest) {
-            return pathTo(closestNode);
+            const result = {
+                path: pathTo(closestNode),
+                currentNodes,
+                neighborNodes,
+            };
+            return result;
         }
-        return [];
+        const result = {
+            path: [],
+            currentNodes,
+            neighborNodes,
+        };
+        return result;
     }
 }
 exports.default = AStar;
